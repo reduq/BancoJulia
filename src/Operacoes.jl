@@ -46,7 +46,7 @@ function criar_conta(numero::Int, titular::String, saldo_inicial::Float64)
     # 'push!' é associado à função nativa de manipulação de vetores mutáveis.
     push!(contas_do_banco, nova_conta) 
 
-    println("Conta de $titular criada com sucesso: (Numero: $numero, Saldo inicial: R$ $saldo_inicial)")
+    println("Conta de $titular criada com sucesso: (Numero: $numero, Saldo inicial: R\$ $saldo_inicial)")
 end
 
 
@@ -58,7 +58,7 @@ function consultar_saldo(numero::Int)
     # A variável 'conta' recebe o retorno da função 'encontrar_conta' e é amarrada a esse valor.
     conta = encontrar_conta(numero) 
 
-    println("Saldo atual da conta $numero $(conta.titular): R$ $(conta.saldo)")
+    println("Saldo atual da conta $numero $(conta.titular): R\$ $(conta.saldo)")
 end
 
 
@@ -74,7 +74,7 @@ function depositar(numero::Int, valor::Float64)
     # O novo valor é calculado e reamarrado ao campo '.saldo' da instância.
     conta.saldo += valor 
 
-    println("Deposito de R$ $valor na conta $numero. Novo saldo: R$ $(conta.saldo)")
+    println("Deposito de R\$ $valor na conta $numero. Novo saldo: R\$ $(conta.saldo)")
 end
 
 
@@ -86,7 +86,7 @@ function sacar(numero::Int, valor::Float64)
     conta = encontrar_conta(numero)
   
     if conta.saldo < valor
-        throw(ErrorException("Saldo insuficiente. Saldo: R$ $(conta.saldo)"))
+        throw(ErrorException("Saldo insuficiente. Saldo: R\$ $(conta.saldo)"))
     end
 
     # [AMARRAÇÃO EM TEMPO DE EXECUÇÃO] 
@@ -94,7 +94,7 @@ function sacar(numero::Int, valor::Float64)
     # O novo valor é calculado e reamarrado ao campo '.saldo' da instância.
     conta.saldo -= valor 
 
-    println("Saque de R$ $valor realizado com sucesso. Novo saldo: R$ $(conta.saldo)")
+    println("Saque de R\$ $valor realizado com sucesso. Novo saldo: R\$ $(conta.saldo)")
 end
 
 
@@ -118,5 +118,5 @@ function transferir(origem::Int, destino::Int, valor::Float64)
     conta_orig.saldo -= valor
     conta_dest.saldo += valor 
 
-    println("Transferencia de R$ $valor enviada de $(conta_orig.titular) para $(conta_dest.titular).")
+    println("Transferencia de R\$ $valor enviada de $(conta_orig.titular) para $(conta_dest.titular).")
 end

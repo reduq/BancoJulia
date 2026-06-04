@@ -37,7 +37,7 @@ println("\n--- 4. TESTANDO O TRATAMENTO DE EXCEÇÕES (ERROS) ---")
 # As palavras reservadas 'try' e 'catch' têm sua sintaxe e semântica de controle de 
 # fluxo amarradas durante o projeto da linguagem.
 try
-    println("\n-> Tentando sacar R$ 1000.00 da conta do João (que só tem 650.00)...")
+    println("\n-> Tentando sacar R\$ 1000.00 da conta do João (que só tem 650.00)...")
     sacar(102, 1000.00)
 
 catch e
