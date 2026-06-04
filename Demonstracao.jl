@@ -36,6 +36,53 @@ println("\n--- 4. TESTANDO O TRATAMENTO DE EXCEÇÕES (ERROS) ---")
 # [AMARRAÇÃO EM TEMPO DE PROJETO DA LP]
 # As palavras reservadas 'try' e 'catch' têm sua sintaxe e semântica de controle de 
 # fluxo amarradas durante o projeto da linguagem.
+
+try
+    println("-> Tentando criar conta com saldo inicial negativo...")
+    criar_conta(103, "Ana", -200.00)
+
+catch e
+    # [AMARRAÇÃO EM TEMPO DE EXECUÇÃO]
+    # O identificador 'e' é amarrado dinamicamente ao objeto da exceção caso seja instanciado. 
+    println("Tratamento capturou o erro: ", e.msg)
+end
+
+try
+    println("\n-> Tentando criar uma conta com numero já existente (numero 101)...")
+    criar_conta(101, "Carlos Pereira", 800.00)
+catch e
+    # [AMARRAÇÃO EM TEMPO DE EXECUÇÃO]
+    # O identificador 'e' é amarrado dinamicamente ao objeto da exceção caso seja instanciado. 
+    println("Tratamento capturou o erro: ", e.msg)
+end
+
+try
+    println("\n-> Tentando consultar o saldo de uma conta inexistente (numero 999)...")
+    consultar_saldo(999)
+catch e
+    # [AMARRAÇÃO EM TEMPO DE EXECUÇÃO]
+    # O identificador 'e' é amarrado dinamicamente ao objeto da exceção caso seja instanciado. 
+    println("Tratamento capturou o erro: ", e.msg)
+end
+
+try
+    println("\n-> Tentando depositar um valor negativo ou 0 (R\$ -50.00) na conta do João...")
+    depositar(102, -50.00)
+catch e
+    # [AMARRAÇÃO EM TEMPO DE EXECUÇÃO]
+    # O identificador 'e' é amarrado dinamicamente ao objeto da exceção caso seja instanciado. 
+    println("Tratamento capturou o erro: ", e.msg)
+end
+
+try
+    println("\n-> Tentando sacar um valor negativo ou 0 (R\$ -50.00) da conta do João...")
+    sacar(102, -50.00)
+catch e
+    # [AMARRAÇÃO EM TEMPO DE EXECUÇÃO]
+    # O identificador 'e' é amarrado dinamicamente ao objeto da exceção caso seja instanciado. 
+    println("Tratamento capturou o erro: ", e.msg)
+end
+
 try
     println("\n-> Tentando sacar R\$ 1000.00 da conta do João (que só tem 650.00)...")
     sacar(102, 1000.00)
@@ -43,17 +90,25 @@ try
 catch e
     # [AMARRAÇÃO EM TEMPO DE EXECUÇÃO]
     # O identificador 'e' é amarrado dinamicamente ao objeto da exceção caso seja instanciado. 
-    println("\nTratamento capturou o erro: ", e.msg)
+    println("Tratamento capturou o erro: ", e.msg)
 end
 
 try
-    println("\n-> Tentando criar conta com saldo inicial negativo...")
-    criar_conta(103, "Ana", -200.00)
-
+    println("\n-> Tentando transferir um valor negativo ou 0 (R\$ -50.00) da conta da Maria para a conta do João...")
+    transferir(101, 102, -50.00)
 catch e
     # [AMARRAÇÃO EM TEMPO DE EXECUÇÃO]
     # O identificador 'e' é amarrado dinamicamente ao objeto da exceção caso seja instanciado. 
-    println("\nTratamento capturou o erro: ", e.msg)
+    println("Tratamento capturou o erro: ", e.msg)
+end
+
+try
+    println("\n-> Tentando transferir R\$ 2000.00 (que só tem 1550.00) da conta da Maria para a conta do João...")
+    transferir(101, 102, 2000.00)
+catch e
+    # [AMARRAÇÃO EM TEMPO DE EXECUÇÃO]
+    # O identificador 'e' é amarrado dinamicamente ao objeto da exceção caso seja instanciado. 
+    println("Tratamento capturou o erro: ", e.msg)
 end
 
 println("\n--- 5. SALDOS FINAIS ---")

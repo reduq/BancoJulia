@@ -86,7 +86,7 @@ function sacar(numero::Int, valor::Float64)
     conta = encontrar_conta(numero)
   
     if conta.saldo < valor
-        throw(ErrorException("Saldo insuficiente. Saldo: R\$ $(conta.saldo)"))
+        throw(ErrorException("Saldo da conta $numero insuficiente. Saldo: R\$ $(conta.saldo)"))
     end
 
     # [AMARRAÇÃO EM TEMPO DE EXECUÇÃO] 
@@ -94,7 +94,7 @@ function sacar(numero::Int, valor::Float64)
     # O novo valor é calculado e reamarrado ao campo '.saldo' da instância.
     conta.saldo -= valor 
 
-    println("Saque de R\$ $valor realizado com sucesso. Novo saldo: R\$ $(conta.saldo)")
+    println("Saque de R\$ $valor na conta $numero. Novo saldo: R\$ $(conta.saldo)")
 end
 
 
@@ -119,4 +119,6 @@ function transferir(origem::Int, destino::Int, valor::Float64)
     conta_dest.saldo += valor 
 
     println("Transferencia de R\$ $valor enviada de $(conta_orig.titular) para $(conta_dest.titular).")
+    println("Novo saldo da conta $origem ($(conta_orig.titular)): R\$ $(conta_orig.saldo)")
+    println("Novo saldo da conta $destino ($(conta_dest.titular)): R\$ $(conta_dest.saldo)")
 end
